@@ -22,6 +22,7 @@ navegación entre pantallas se maneja con Navigation Compose.
 El tema de la aplicación se define usando Material 3.
 
 URL al repositorio de Git:
+https://github.com/kovaz5/ProyectoPMDM_MyPokeCompanion/
 
 Horas de disponibilidad para corrección del proyecto:
 A partir de las 16:00 horas (trabajo de 7 a 15), cualquier día de la semana.
