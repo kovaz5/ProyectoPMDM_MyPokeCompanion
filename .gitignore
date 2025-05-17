@@ -1,0 +1,26 @@
+gitignore
+        # Archivos de compilación (Build files)
+        build/
+        app/build/
+
+        # Archivos generados por el IDE
+        .idea/
+        *.iml
+        *.hprof
+        *.pyc
+        *.pyo
+        *.rbc
+        *.yarb
+        *~
+        .DS_Store
+        captures/
+        .externalNativeBuild/
+
+        # Archivos locales de configuración (Local configuration files)
+        local.properties
+
+        # Archivos de log (Log files)
+        *.log
+
+        # Android Studio Profile files
+        profile-results/
