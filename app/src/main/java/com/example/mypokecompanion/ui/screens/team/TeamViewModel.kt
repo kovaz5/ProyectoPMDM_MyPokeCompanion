@@ -38,6 +38,7 @@ class TeamViewModel(
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(TeamUiState())
+
     /**
      * Flujo del estado de la UI para ser observado por la pantalla del equipo.
      */
@@ -96,7 +97,6 @@ class TeamViewModel(
                 // Equipo lleno, mostrar diálogo de reemplazo
                 _uiState.update {
                     it.copy(
-                        errorMessage = "¡Tu equipo está lleno! ¿Reemplazar un Pokémon?",
                         showReplaceDialog = true,
                         pokemonToAddOrReplace = pokemon
                     )
@@ -136,9 +136,11 @@ class TeamViewModel(
         viewModelScope.launch {
             // Verificar si el Pokémon a añadir ya está en el equipo en un slot DIFERENTE al que se va a reemplazar.
             // Si es así, se quita primero de su slot actual para evitar duplicados lógicos (misma ID).
-            val existingPokemonInstanceInTeam = uiState.value.teamMembers.find { it?.id == newPokemon.id }
+            val existingPokemonInstanceInTeam =
+                uiState.value.teamMembers.find { it?.id == newPokemon.id }
             if (existingPokemonInstanceInTeam != null) {
-                val indexOfExisting = uiState.value.teamMembers.indexOf(existingPokemonInstanceInTeam)
+                val indexOfExisting =
+                    uiState.value.teamMembers.indexOf(existingPokemonInstanceInTeam)
                 if (indexOfExisting != -1 && indexOfExisting != slotIndexToReplace) {
                     // Si el Pokémon existe y no está en el slot que vamos a usar para el reemplazo,
                     // entonces lo quitamos de su posición actual.
@@ -148,7 +150,11 @@ class TeamViewModel(
             // Ahora añade/reemplaza el Pokémon en el slot deseado.
             teamRepository.addPokemonToTeam(newPokemon, slotIndexToReplace)
             _uiState.update {
-                it.copy(showReplaceDialog = false, pokemonToAddOrReplace = null, errorMessage = null)
+                it.copy(
+                    showReplaceDialog = false,
+                    pokemonToAddOrReplace = null,
+                    errorMessage = null
+                )
             }
         }
     }
